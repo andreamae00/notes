@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>NOTES</h1>
+  <div class="layout">
+
+    <!-- MAIN LIST -->
+    <main class="panel" id="main">
+      <div class="head"><h2 id="dateTitle"></h2><button class="link" id="editBtn">Edit</button></div>
+      <div id="pending"></div>
+      <h3>TASKS COMPLETED</h3>
+      <div id="completed"></div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="side">
+      <section class="panel cal">
+        <h2 style="margin:0;font-size:1.3rem">Calendar</h2>
+        <p class="big" id="calBig"></p>
+        <div class="cal-nav"><button class="link" id="prev" aria-label="Previous month">◀</button><div class="cal-pick">
+          <select id="cMonth" aria-label="Month"></select>
+          <select id="cDay" aria-label="Day"></select>
+          <input type="number" id="cYear" min="1900" max="2100" aria-label="Year">
+        </div><button class="link" id="next" aria-label="Next month">▶</button></div>
+        <div class="cal-today"><button type="button" class="pill" id="calToday">Today</button></div>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <section class="panel add" id="addPanel">
+        <button class="toggle" id="toggleAdd" aria-label="Show or hide Add Notes">▼</button>
+        <h2>Add Notes</h2>
+        <form id="addForm">
+          <div class="row">
+            <label>Priority Level
+              <select id="fPri"><option value="urgent">Urgent</option><option value="normal">Normal</option><option value="low">Low Priority</option></select></label>
+            <label>Date<input type="date" id="fDate" required></label>
+            <label>Time<input type="time" id="fTime" value="09:00" required></label>
+          </div>
+          <label>Title<input id="fTitle" required maxlength="80"></label>
+          <label>Description<textarea id="fDesc" placeholder="Write a description..."></textarea></label>
+          <div class="bring-field">
+            <span class="lbl">Must bring items</span>
+            <div class="bring-add"><input id="fBring" placeholder="e.g. Laptop charger" maxlength="60" aria-label="Must bring item"><button type="button" class="btn small" id="fBringAdd">+ Add</button></div>
+            <ul class="chips" id="fBringList"></ul>
+          </div>
+          <button class="btn" type="submit">Submit</button>
+        </form>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<!-- POP-UP CLOCK -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="box">
+    <h4 id="mTitle"></h4>
+    <div class="lcd"><span id="clock">00:00:00</span><small id="elapsed"></small></div>
+    <button class="btn" id="startBtn">Start</button>
+    <button class="btn" id="pauseBtn" hidden>Pause</button>
+    <button class="btn" id="stopBtn" hidden>Stop</button>
+    <button class="btn close" id="closeBtn">Close</button>
+  </div>
+</div>
+
+<!-- CHOOSE: complete or timer -->
+<div class="modal" id="opt"><div class="box cbox" role="dialog" aria-modal="true" aria-labelledby="oTitle">
+  <h4 id="oTitle"></h4>
+  <button class="btn" id="oDone">Mark as completed</button>
+  <button class="btn" id="oTimer">Use timer</button>
+  <button class="btn close" id="oCancel">Cancel</button>
+</div></div>
+
+<!-- DETAILS -->
+<div class="modal" id="det"><div class="sheet" role="dialog" aria-modal="true" aria-label="Task details"><div id="dBody"></div></div></div>
+
+<!-- EDIT TASK -->
+<div class="modal" id="edt"><div class="sheet" role="dialog" aria-modal="true" aria-label="Edit task">
+  <h3 style="margin:0 0 12px">Edit task</h3>
+  <form id="eForm" class="eform">
+    <div class="row">
+      <label>Priority Level<select id="eP"><option value="urgent">Urgent</option><option value="normal">Normal</option><option value="low">Low Priority</option></select></label>
+      <label>Date<input type="date" id="eD" required></label>
+      <label>Time<input type="time" id="eT" required></label>
+    </div>
+    <label>Title<input id="eTitle" required maxlength="80"></label>
+    <label>Description<textarea id="eDesc"></textarea></label>
+    <div class="bring-field">
+      <span class="lbl">Must bring items</span>
+      <div class="bring-add"><input id="eBring" placeholder="e.g. Laptop charger" maxlength="60" aria-label="Must bring item"><button type="button" class="btn small" id="eBringAdd">+ Add</button></div>
+      <ul class="chips" id="eList"></ul>
+    </div>
+    <div class="foot"><button type="button" class="pill" id="eCancel">Cancel</button><button class="btn small" type="submit">Save changes</button></div>
+  </form>
+</div></div>
+
+<!-- CONFIRM -->
+<div class="modal" id="cfm"><div class="box cbox" role="alertdialog" aria-modal="true" aria-labelledby="cMsg">
+  <p id="cMsg"></p><button class="btn" id="cYes">Yes</button><button class="btn close" id="cNo">Cancel</button>
+</div></div>
+
+<script src="app.js"></script>
+</body>
+</html>
