@@ -817,7 +817,7 @@ $("oAlarm").onclick = () => {
   hide("opt");
   $("alarmTaskTitle").textContent = t.title;
   $("alarmHours").value = 0;
-  $("alarmMinutes").value = 20;
+  $("alarmMinutes").value = 0;
   $("alarmSeconds").value = 0;
   show("alarmSetup");
 };
